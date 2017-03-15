@@ -1,0 +1,9 @@
+SVN地址：
+http://www.togogo.talent:81/svn/Talent/trunk
+
+账号：姓拼音.名字拼音(如杨光童=yang.guangtong)
+密码：123456
+
+注意：每次重启SVN服务器每位同学需修改host文件（C:\Windows\System32\drivers\etc\host）
+host文件修改如下：(ip地址会通知大家)
+xxx.xxx.xxx.xxx www.togogo.talent

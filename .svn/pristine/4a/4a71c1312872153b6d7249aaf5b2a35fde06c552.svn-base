@@ -1,0 +1,39 @@
+package net.togogo.talent.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.togogo.talent.domain.TbRecruit;
+import net.togogo.talent.domain.TbRecruitExample;
+import net.togogo.talent.service.ITbRecruitService;
+
+@Controller
+public class TbRecruitController {
+	@Resource
+	private ITbRecruitService tbRecruitService ;
+
+	@RequestMapping("/index.do")
+	public String index(Model model){
+		
+		TbRecruitExample example = new TbRecruitExample();
+		List<TbRecruit> tbRecruits = tbRecruitService.selectByExample(example);
+		model.addAttribute("recruits", tbRecruits);
+		
+		return "recruitList";
+	}
+	
+	@RequestMapping("/nextPage")
+	public String nextPage(Model model, HttpServletRequest request) {
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+		List<TbRecruit> tbRecruits = tbRecruitService.selectMoreByExample(new TbRecruitExample(), pageIndex);
+		model.addAttribute("recruits", tbRecruits);
+		
+		return "nextPage";
+	}
+}

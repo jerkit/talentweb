@@ -1,0 +1,14 @@
+package net.togogo.talent.service;
+
+import net.togogo.talent.domain.TbResume;
+
+public interface ITbResumeService {
+	
+    int deleteByPrimaryKey(Integer resuId);
+
+    int insert(TbResume record);
+
+    TbResume selectByPrimaryKey(Integer resuId);
+    
+    int updateByPrimaryKey(TbResume record);
+}

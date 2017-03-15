@@ -1,0 +1,48 @@
+package net.togogo.talent.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.togogo.talent.domain.TbMessage;
+import net.togogo.talent.domain.TbMessageExample;
+import net.togogo.talent.domain.TbMessageExample.Criteria;
+import net.togogo.talent.service.ITbMessageService;
+
+@Controller
+public class TbMessageController {
+	@Resource
+	private ITbMessageService tbMessageService;
+	@RequestMapping("/messageSystem")
+	public String findMessageSystem(Model model)
+	{
+		TbMessageExample example=new TbMessageExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andMessTypeEqualTo("system");
+	    List<TbMessage> tbMessage=tbMessageService.selectByExample(example);
+		model.addAllAttributes(tbMessage);
+		return null;
+	}
+	public String findMessageRecommend(Model model){
+		TbMessageExample example=new TbMessageExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andMessTypeEqualTo("recommend");
+	    List<TbMessage> tbMessage=tbMessageService.selectByExample(example);
+		model.addAllAttributes(tbMessage);
+		return null;
+		
+	}
+	public String findMessageRecruit(Model model)
+	{
+		TbMessageExample example=new TbMessageExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andMessTypeEqualTo("recruit");
+	    List<TbMessage> tbMessage=tbMessageService.selectByExample(example);
+		model.addAllAttributes(tbMessage);
+		return null;
+	}
+}

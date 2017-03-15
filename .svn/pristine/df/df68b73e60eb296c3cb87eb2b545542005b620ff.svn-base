@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.togogo.talent.mapper.TbCompanyMapper" >
+  <resultMap id="BaseResultMap" type="net.togogo.talent.domain.TbCompany" >
+    <id column="comp_id" property="compId" jdbcType="INTEGER" />
+    <result column="comp_email" property="compEmail" jdbcType="VARCHAR" />
+    <result column="comp_password" property="compPassword" jdbcType="VARCHAR" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="comp_info" property="compInfo" jdbcType="VARCHAR" />
+    <result column="comp_logo" property="compLogo" jdbcType="VARCHAR" />
+    <result column="comp_address" property="compAddress" jdbcType="VARCHAR" />
+    <result column="comp_focus" property="compFocus" jdbcType="VARCHAR" />
+    <result column="comp_license" property="compLicense" jdbcType="VARCHAR" />
+    <result column="comp_phone" property="compPhone" jdbcType="VARCHAR" />
+    <result column="comp_state" property="compState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    comp_id, comp_email, comp_password, comp_name, comp_info, comp_logo, comp_address, 
+    comp_focus, comp_license, comp_phone, comp_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.togogo.talent.domain.TbCompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_company
+    where comp_id = #{compId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_company
+    where comp_id = #{compId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="net.togogo.talent.domain.TbCompanyExample" >
+    delete from tb_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="net.togogo.talent.domain.TbCompany" >
+    insert into tb_company (comp_id, comp_email, comp_password, 
+      comp_name, comp_info, comp_logo, 
+      comp_address, comp_focus, comp_license, 
+      comp_phone, comp_state)
+    values (#{compId,jdbcType=INTEGER}, #{compEmail,jdbcType=VARCHAR}, #{compPassword,jdbcType=VARCHAR}, 
+      #{compName,jdbcType=VARCHAR}, #{compInfo,jdbcType=VARCHAR}, #{compLogo,jdbcType=VARCHAR}, 
+      #{compAddress,jdbcType=VARCHAR}, #{compFocus,jdbcType=VARCHAR}, #{compLicense,jdbcType=VARCHAR}, 
+      #{compPhone,jdbcType=VARCHAR}, #{compState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="net.togogo.talent.domain.TbCompany" >
+    insert into tb_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="compId != null" >
+        comp_id,
+      </if>
+      <if test="compEmail != null" >
+        comp_email,
+      </if>
+      <if test="compPassword != null" >
+        comp_password,
+      </if>
+      <if test="compName != null" >
+        comp_name,
+      </if>
+      <if test="compInfo != null" >
+        comp_info,
+      </if>
+      <if test="compLogo != null" >
+        comp_logo,
+      </if>
+      <if test="compAddress != null" >
+        comp_address,
+      </if>
+      <if test="compFocus != null" >
+        comp_focus,
+      </if>
+      <if test="compLicense != null" >
+        comp_license,
+      </if>
+      <if test="compPhone != null" >
+        comp_phone,
+      </if>
+      <if test="compState != null" >
+        comp_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="compId != null" >
+        #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="compEmail != null" >
+        #{compEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="compPassword != null" >
+        #{compPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="compName != null" >
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="compInfo != null" >
+        #{compInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="compLogo != null" >
+        #{compLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="compAddress != null" >
+        #{compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compFocus != null" >
+        #{compFocus,jdbcType=VARCHAR},
+      </if>
+      <if test="compLicense != null" >
+        #{compLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="compPhone != null" >
+        #{compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="compState != null" >
+        #{compState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.togogo.talent.domain.TbCompanyExample" resultType="java.lang.Integer" >
+    select count(*) from tb_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_company
+    <set >
+      <if test="record.compId != null" >
+        comp_id = #{record.compId,jdbcType=INTEGER},
+      </if>
+      <if test="record.compEmail != null" >
+        comp_email = #{record.compEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compPassword != null" >
+        comp_password = #{record.compPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compName != null" >
+        comp_name = #{record.compName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compInfo != null" >
+        comp_info = #{record.compInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compLogo != null" >
+        comp_logo = #{record.compLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compAddress != null" >
+        comp_address = #{record.compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compFocus != null" >
+        comp_focus = #{record.compFocus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compLicense != null" >
+        comp_license = #{record.compLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compPhone != null" >
+        comp_phone = #{record.compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compState != null" >
+        comp_state = #{record.compState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_company
+    set comp_id = #{record.compId,jdbcType=INTEGER},
+      comp_email = #{record.compEmail,jdbcType=VARCHAR},
+      comp_password = #{record.compPassword,jdbcType=VARCHAR},
+      comp_name = #{record.compName,jdbcType=VARCHAR},
+      comp_info = #{record.compInfo,jdbcType=VARCHAR},
+      comp_logo = #{record.compLogo,jdbcType=VARCHAR},
+      comp_address = #{record.compAddress,jdbcType=VARCHAR},
+      comp_focus = #{record.compFocus,jdbcType=VARCHAR},
+      comp_license = #{record.compLicense,jdbcType=VARCHAR},
+      comp_phone = #{record.compPhone,jdbcType=VARCHAR},
+      comp_state = #{record.compState,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="net.togogo.talent.domain.TbCompany" >
+    update tb_company
+    <set >
+      <if test="compEmail != null" >
+        comp_email = #{compEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="compPassword != null" >
+        comp_password = #{compPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="compName != null" >
+        comp_name = #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="compInfo != null" >
+        comp_info = #{compInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="compLogo != null" >
+        comp_logo = #{compLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="compAddress != null" >
+        comp_address = #{compAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="compFocus != null" >
+        comp_focus = #{compFocus,jdbcType=VARCHAR},
+      </if>
+      <if test="compLicense != null" >
+        comp_license = #{compLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="compPhone != null" >
+        comp_phone = #{compPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="compState != null" >
+        comp_state = #{compState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where comp_id = #{compId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.togogo.talent.domain.TbCompany" >
+    update tb_company
+    set comp_email = #{compEmail,jdbcType=VARCHAR},
+      comp_password = #{compPassword,jdbcType=VARCHAR},
+      comp_name = #{compName,jdbcType=VARCHAR},
+      comp_info = #{compInfo,jdbcType=VARCHAR},
+      comp_logo = #{compLogo,jdbcType=VARCHAR},
+      comp_address = #{compAddress,jdbcType=VARCHAR},
+      comp_focus = #{compFocus,jdbcType=VARCHAR},
+      comp_license = #{compLicense,jdbcType=VARCHAR},
+      comp_phone = #{compPhone,jdbcType=VARCHAR},
+      comp_state = #{compState,jdbcType=INTEGER}
+    where comp_id = #{compId,jdbcType=INTEGER}
+  </update>
+</mapper>

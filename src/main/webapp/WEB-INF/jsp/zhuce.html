@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>注册</title>
+
+<!--1.加载Bootstrap层叠样式表-->
+<link href="C:\Users\zzz\Desktop\腾科\project\dist\css\bootstrap.min.css" rel="stylesheet">
+<!--2.JQuery库，同时加载该库必须在加载bootstrap.min.js之前-->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!--3.加载bootstrap的核心js库-->
+<script src="C:\Users\zzz\Desktop\腾科\project\dist\js\bootstrap.min.js"></script>
+
+<style type="text/css">
+.header{
+	height:50px;
+	line-height: 50px;
+}
+
+.header p{
+	height: 50px;	
+	text-align: center;
+	border-bottom: 3px solid #ccc;
+}
+
+.header p span{
+	font-family: '黑体';
+	font-size: 30px;
+}
+
+.header p a{
+	font-size: 20px;
+	padding-top: 15px;
+}
+
+.header a:hover{
+	text-decoration: none;
+}
+
+.img-responsive{
+	padding:20px 0;
+}
+
+.code{
+	margin-left: 0;
+}
+
+.radio,.checkbox{
+	padding-bottom: 15px;
+}
+</style>
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<p>
+				<a href="#" class="glyphicon glyphicon-menu-left col-xs-1 col-xs-offset-4"></a>
+				<span class="col-xs-2 text-center">注册</span>
+			</p>
+		</div>
+	</header>
+
+	<img src="img/head portrait.jpg" class="img-responsive center-block" alt="register head portrait">
+
+	<form class="form-horizontal">
+		<div class="form-group">
+			<div class="col-xs-1 col-xs-offset-4 text-right">
+				<img src="img/photo.png" alt="photo">
+			</div>
+			<div class="col-xs-3">
+				<input type="email" class="form-control" id="registerInputEmail" placeholder="邮箱">
+			</div>			
+		</div>
+		<div class="form-group">
+			<div class="col-xs-1 col-xs-offset-4 text-right">
+				<img src="img/photo.png" alt="photo">
+			</div>
+			<div class="col-xs-2">
+				<input type="text" class="form-control" id="registerInputIdentifyingCode" placeholder="验证码">
+			</div>
+			<div class="col-xs-1"  style="padding-left:0">
+				<button class="btn btn-default code" type="submit">获取验证码</button>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-1 col-xs-offset-4 text-right">
+				<img src="img/photo.png" alt="photo">
+			</div>
+			<div class="col-xs-3">
+				<input type="text" class="form-control" id="registerInputName" placeholder="用户名">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-1 col-xs-offset-4 text-right">
+				<img src="img/photo.png" alt="photo">
+			</div>
+			<div class="col-xs-3">
+				<input type="password" class="form-control" id="registerInputPassword" placeholder="密码">
+			</div>
+		</div>
+		<div class="radio col-xs-2 col-xs-offset-5">
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+		    个人&nbsp&nbsp
+		  </label>
+		  <label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+		    企业
+		  </label>
+		</div>
+		<div class="checkbox col-xs-3 col-xs-offset-5">
+		  <label>
+		    <input type="checkbox" value="">
+		    我已阅读并同意万才网协议
+		  </label>
+		</div>
+		<button class="btn btn-default col-xs-3 col-xs-offset-5" type="submit">注册</button>
+	</form>
+
+</body>
+</html>

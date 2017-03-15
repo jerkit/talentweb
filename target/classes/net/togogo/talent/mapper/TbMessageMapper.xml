@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.togogo.talent.mapper.TbMessageMapper" >
+  <resultMap id="BaseResultMap" type="net.togogo.talent.domain.TbMessage" >
+    <id column="mess_id" property="messId" jdbcType="INTEGER" />
+    <result column="mess_topic" property="messTopic" jdbcType="VARCHAR" />
+    <result column="resource" property="resource" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="comp_id" property="compId" jdbcType="INTEGER" />
+    <result column="mess_date" property="messDate" jdbcType="TIMESTAMP" />
+    <result column="mess_type" property="messType" jdbcType="VARCHAR" />
+    <result column="send_role" property="sendRole" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mess_id, mess_topic, resource, content, user_id, comp_id, mess_date, mess_type, send_role
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.togogo.talent.domain.TbMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_message
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_message
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="net.togogo.talent.domain.TbMessageExample" >
+    delete from tb_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="net.togogo.talent.domain.TbMessage" >
+    insert into tb_message (mess_id, mess_topic, resource, 
+      content, user_id, comp_id, 
+      mess_date, mess_type, send_role
+      )
+    values (#{messId,jdbcType=INTEGER}, #{messTopic,jdbcType=VARCHAR}, #{resource,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{compId,jdbcType=INTEGER}, 
+      #{messDate,jdbcType=TIMESTAMP}, #{messType,jdbcType=VARCHAR}, #{sendRole,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.togogo.talent.domain.TbMessage" >
+    insert into tb_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messId != null" >
+        mess_id,
+      </if>
+      <if test="messTopic != null" >
+        mess_topic,
+      </if>
+      <if test="resource != null" >
+        resource,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="compId != null" >
+        comp_id,
+      </if>
+      <if test="messDate != null" >
+        mess_date,
+      </if>
+      <if test="messType != null" >
+        mess_type,
+      </if>
+      <if test="sendRole != null" >
+        send_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messId != null" >
+        #{messId,jdbcType=INTEGER},
+      </if>
+      <if test="messTopic != null" >
+        #{messTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="resource != null" >
+        #{resource,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="compId != null" >
+        #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="messDate != null" >
+        #{messDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messType != null" >
+        #{messType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendRole != null" >
+        #{sendRole,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.togogo.talent.domain.TbMessageExample" resultType="java.lang.Integer" >
+    select count(*) from tb_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_message
+    <set >
+      <if test="record.messId != null" >
+        mess_id = #{record.messId,jdbcType=INTEGER},
+      </if>
+      <if test="record.messTopic != null" >
+        mess_topic = #{record.messTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resource != null" >
+        resource = #{record.resource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.compId != null" >
+        comp_id = #{record.compId,jdbcType=INTEGER},
+      </if>
+      <if test="record.messDate != null" >
+        mess_date = #{record.messDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.messType != null" >
+        mess_type = #{record.messType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendRole != null" >
+        send_role = #{record.sendRole,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_message
+    set mess_id = #{record.messId,jdbcType=INTEGER},
+      mess_topic = #{record.messTopic,jdbcType=VARCHAR},
+      resource = #{record.resource,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      comp_id = #{record.compId,jdbcType=INTEGER},
+      mess_date = #{record.messDate,jdbcType=TIMESTAMP},
+      mess_type = #{record.messType,jdbcType=VARCHAR},
+      send_role = #{record.sendRole,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="net.togogo.talent.domain.TbMessage" >
+    update tb_message
+    <set >
+      <if test="messTopic != null" >
+        mess_topic = #{messTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="resource != null" >
+        resource = #{resource,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="compId != null" >
+        comp_id = #{compId,jdbcType=INTEGER},
+      </if>
+      <if test="messDate != null" >
+        mess_date = #{messDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messType != null" >
+        mess_type = #{messType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendRole != null" >
+        send_role = #{sendRole,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.togogo.talent.domain.TbMessage" >
+    update tb_message
+    set mess_topic = #{messTopic,jdbcType=VARCHAR},
+      resource = #{resource,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      comp_id = #{compId,jdbcType=INTEGER},
+      mess_date = #{messDate,jdbcType=TIMESTAMP},
+      mess_type = #{messType,jdbcType=VARCHAR},
+      send_role = #{sendRole,jdbcType=VARCHAR}
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </update>
+</mapper>

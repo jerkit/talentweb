@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+#content{
+	min-height: 600px;
+}
+
+#cHead{
+	height: 80px;
+}
+#cHead a{
+	font-size: 16px;
+	line-height: 80px;
+}
+
+#content .zpxx{
+	width: 44%;
+	border: 1px solid #888;
+	border-radius: 5px;
+	float: left;
+	margin: 10px 30px;
+	padding: 10px;
+}
+#content .zpxx h3,#content .zpxx p{
+	margin: 10px 30px;
+}

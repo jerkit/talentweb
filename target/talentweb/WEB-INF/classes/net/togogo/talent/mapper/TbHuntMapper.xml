@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.togogo.talent.mapper.TbHuntMapper" >
+  <resultMap id="BaseResultMap" type="net.togogo.talent.domain.TbHunt" >
+    <id column="hunt_id" property="huntId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="hunt_job" property="huntJob" jdbcType="VARCHAR" />
+    <result column="hunt_place" property="huntPlace" jdbcType="VARCHAR" />
+    <result column="hunt_degree" property="huntDegree" jdbcType="VARCHAR" />
+    <result column="hunt_skill" property="huntSkill" jdbcType="VARCHAR" />
+    <result column="hunt_experience" property="huntExperience" jdbcType="VARCHAR" />
+    <result column="hunt_salary" property="huntSalary" jdbcType="VARCHAR" />
+    <result column="hunt_date" property="huntDate" jdbcType="TIMESTAMP" />
+    <result column="hunt_state" property="huntState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    hunt_id, user_name, user_id, hunt_job, hunt_place, hunt_degree, hunt_skill, hunt_experience, 
+    hunt_salary, hunt_date, hunt_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.togogo.talent.domain.TbHuntExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_hunt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_hunt
+    where hunt_id = #{huntId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_hunt
+    where hunt_id = #{huntId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="net.togogo.talent.domain.TbHuntExample" >
+    delete from tb_hunt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="net.togogo.talent.domain.TbHunt" >
+    insert into tb_hunt (hunt_id, user_name, user_id, 
+      hunt_job, hunt_place, hunt_degree, 
+      hunt_skill, hunt_experience, hunt_salary, 
+      hunt_date, hunt_state)
+    values (#{huntId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{huntJob,jdbcType=VARCHAR}, #{huntPlace,jdbcType=VARCHAR}, #{huntDegree,jdbcType=VARCHAR}, 
+      #{huntSkill,jdbcType=VARCHAR}, #{huntExperience,jdbcType=VARCHAR}, #{huntSalary,jdbcType=VARCHAR}, 
+      #{huntDate,jdbcType=TIMESTAMP}, #{huntState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="net.togogo.talent.domain.TbHunt" >
+    insert into tb_hunt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="huntId != null" >
+        hunt_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="huntJob != null" >
+        hunt_job,
+      </if>
+      <if test="huntPlace != null" >
+        hunt_place,
+      </if>
+      <if test="huntDegree != null" >
+        hunt_degree,
+      </if>
+      <if test="huntSkill != null" >
+        hunt_skill,
+      </if>
+      <if test="huntExperience != null" >
+        hunt_experience,
+      </if>
+      <if test="huntSalary != null" >
+        hunt_salary,
+      </if>
+      <if test="huntDate != null" >
+        hunt_date,
+      </if>
+      <if test="huntState != null" >
+        hunt_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="huntId != null" >
+        #{huntId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="huntJob != null" >
+        #{huntJob,jdbcType=VARCHAR},
+      </if>
+      <if test="huntPlace != null" >
+        #{huntPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="huntDegree != null" >
+        #{huntDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="huntSkill != null" >
+        #{huntSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="huntExperience != null" >
+        #{huntExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="huntSalary != null" >
+        #{huntSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="huntDate != null" >
+        #{huntDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huntState != null" >
+        #{huntState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.togogo.talent.domain.TbHuntExample" resultType="java.lang.Integer" >
+    select count(*) from tb_hunt
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_hunt
+    <set >
+      <if test="record.huntId != null" >
+        hunt_id = #{record.huntId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.huntJob != null" >
+        hunt_job = #{record.huntJob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntPlace != null" >
+        hunt_place = #{record.huntPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntDegree != null" >
+        hunt_degree = #{record.huntDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntSkill != null" >
+        hunt_skill = #{record.huntSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntExperience != null" >
+        hunt_experience = #{record.huntExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntSalary != null" >
+        hunt_salary = #{record.huntSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huntDate != null" >
+        hunt_date = #{record.huntDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.huntState != null" >
+        hunt_state = #{record.huntState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_hunt
+    set hunt_id = #{record.huntId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      hunt_job = #{record.huntJob,jdbcType=VARCHAR},
+      hunt_place = #{record.huntPlace,jdbcType=VARCHAR},
+      hunt_degree = #{record.huntDegree,jdbcType=VARCHAR},
+      hunt_skill = #{record.huntSkill,jdbcType=VARCHAR},
+      hunt_experience = #{record.huntExperience,jdbcType=VARCHAR},
+      hunt_salary = #{record.huntSalary,jdbcType=VARCHAR},
+      hunt_date = #{record.huntDate,jdbcType=TIMESTAMP},
+      hunt_state = #{record.huntState,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="net.togogo.talent.domain.TbHunt" >
+    update tb_hunt
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="huntJob != null" >
+        hunt_job = #{huntJob,jdbcType=VARCHAR},
+      </if>
+      <if test="huntPlace != null" >
+        hunt_place = #{huntPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="huntDegree != null" >
+        hunt_degree = #{huntDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="huntSkill != null" >
+        hunt_skill = #{huntSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="huntExperience != null" >
+        hunt_experience = #{huntExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="huntSalary != null" >
+        hunt_salary = #{huntSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="huntDate != null" >
+        hunt_date = #{huntDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huntState != null" >
+        hunt_state = #{huntState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where hunt_id = #{huntId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.togogo.talent.domain.TbHunt" >
+    update tb_hunt
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      hunt_job = #{huntJob,jdbcType=VARCHAR},
+      hunt_place = #{huntPlace,jdbcType=VARCHAR},
+      hunt_degree = #{huntDegree,jdbcType=VARCHAR},
+      hunt_skill = #{huntSkill,jdbcType=VARCHAR},
+      hunt_experience = #{huntExperience,jdbcType=VARCHAR},
+      hunt_salary = #{huntSalary,jdbcType=VARCHAR},
+      hunt_date = #{huntDate,jdbcType=TIMESTAMP},
+      hunt_state = #{huntState,jdbcType=INTEGER}
+    where hunt_id = #{huntId,jdbcType=INTEGER}
+  </update>
+</mapper>

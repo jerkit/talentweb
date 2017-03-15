@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+#pageHeader{
+	height: 70px;
+	color: #fff;
+	background: #222;
+}
+#pageHeaderLink{
+	height: 100%;
+}
+#pageHeaderLink a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 14px;
+	line-height: 70px;
+}
+
+.nav{
+	color: #fff;
+	background: #222;
+}
+.nav-tabs > li > a{
+	color: #fff;
+	font-size: 14px;
+}
+
+.nav-tabs > li > a:hover{
+	color: #222;
+	background: #fff;
+	font-size: 14px;
+}
+
+#content{
+	min-height: 600px;
+}

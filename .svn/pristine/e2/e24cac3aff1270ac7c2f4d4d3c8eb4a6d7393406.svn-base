@@ -1,0 +1,31 @@
+package net.togogo.talent.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.togogo.talent.domain.TbMessage;
+import net.togogo.talent.domain.TbMessageExample;
+import net.togogo.talent.domain.TbMessageExample.Criteria;
+import net.togogo.talent.service.ITbMessageService;
+
+@Controller
+public class TbMessageController {
+	@Resource
+	private ITbMessageService tbMessageService;
+	@RequestMapping("/message.do")
+	public String findMessage(Model model,String messType,int pageIndex)
+	{
+		TbMessageExample example=new TbMessageExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andMessTypeEqualTo(messType);
+	    List<TbMessage> tbMessage=tbMessageService.selectByExample(example,pageIndex,8);
+		model.addAllAttributes(tbMessage);
+		return "messageList";
+	}
+}
